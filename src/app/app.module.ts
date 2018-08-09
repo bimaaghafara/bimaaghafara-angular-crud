@@ -2,10 +2,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { LoginComponent } from './main/components/login/login.component';
+import { UserAddComponent } from './main/components/user/user-add/user-add.component';
+import { UserEditComponent } from './main/components/user/user-edit/user-edit.component';
+import { UserListComponent } from './main/components/user/user-list/user-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    UserAddComponent,
+    UserEditComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule
