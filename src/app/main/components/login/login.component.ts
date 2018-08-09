@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, NgZone } from '@angular/core';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    @Inject(NgZone) private zone: NgZone,
+    private loginService: LoginService
+  ) {
+  }
 
   ngOnInit() {
+    this.loginService.getPosts().subscribe( post => {
+      console.log(post);
+    });
   }
 
 }
