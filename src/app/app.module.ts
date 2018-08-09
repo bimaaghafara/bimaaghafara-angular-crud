@@ -1,6 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
+// routing
+import { AppRoutingModule } from './app-routing.module';
+
+// components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './main/components/login/login.component';
 import { UserAddComponent } from './main/components/user/user-add/user-add.component';
@@ -16,7 +21,8 @@ import { UserListComponent } from './main/components/user/user-list/user-list.co
     UserListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
