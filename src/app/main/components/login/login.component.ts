@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('Submit login!');
+    console.log('Button login was clicked!');
     const userName = this.model.userName;
     const password = this.model.password;
     this.isValid.userName = userName ? true : false;
