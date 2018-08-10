@@ -20,20 +20,20 @@ export class LoginService {
                 userName: userName,
                 password: password,
             }
-        }
+        };
         const user = await this.http.get(this.usersUrl, options).pipe(
             map(res => res.json())
         ).toPromise();
-        return user.length > 0? true: false;
+        return user.length > 0 ? true : false;
     }
 
     getUsers(page, limit): Observable<User[]> {
         const options: RequestOptionsArgs = {
-            params: { 
-                _page: page, 
-                _limit: limit, 
+            params: {
+                _page: page,
+                _limit: limit,
             }
-        }
+        };
         return this.http.get(this.usersUrl, options).pipe(
             map(res => res.json())
         );
