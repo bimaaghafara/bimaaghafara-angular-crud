@@ -1,27 +1,29 @@
 import { Http, Response, URLSearchParams, RequestOptionsArgs } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { Observable } from '../../../../node_modules/rxjs';
+
+// model
+import { User } from '../models/user';
 
 @Injectable()
 
-export class LoginService {
+export class UserService {
     usersUrl = 'http://localhost:3000/users';
 
     constructor(
         private http: Http,
     ) { }
 
-    async login(userName, password) {
+    getUsers(page, limit): Observable<User[]> {
         const options: RequestOptionsArgs = {
             params: {
-                userName: userName,
-                password: password,
+                _page: page,
+                _limit: limit,
             }
         };
-        const user = await this.http.get(this.usersUrl, options).pipe(
+        return this.http.get(this.usersUrl, options).pipe(
             map(res => res.json())
-        ).toPromise();
-        return user.length > 0 ? true : false;
+        );
     }
-
 }
