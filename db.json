@@ -1,16 +1,7 @@
 {
-    "posts": [
-      { "id": 1, "title": "json-server", "author": "typicode" },
-      { "id": 2, "title": "json2", "author": "type" },
-      { "id": 3, "title": "json2", "author": "type" },
-      { "id": 4, "title": "json2", "author": "type" },
-      { "id": 5, "title": "json2", "author": "type" },
-      { "id": 6, "title": "json2", "author": "type" },
-      { "id": 7, "title": "json2", "author": "type" },
-      { "id": 8, "title": "json2", "author": "type" }
-    ],
-    "comments": [
-      { "id": 1, "body": "some comment", "postId": 1 }
-    ],
-    "profile": { "name": "typicodes" }
-  }
+  "users": [
+    {"id": "user0", "userName": "admin", "password":"admin", "firstName": "admin", "lastName": "mimin", "active": true, "lastModifiedBy": null, "lastModifiedDate": null},
+    {"id": "user1", "userName": "user1", "password":"admin", "firstName": "admin", "lastName": "", "active": true, "lastModifiedBy": null, "lastModifiedDate": null},
+    {"id": "user2", "userName": "user2", "password":"admin", "firstName": "admin", "lastName": "", "active": true, "lastModifiedBy": null, "lastModifiedDate": null}
+  ]
+}

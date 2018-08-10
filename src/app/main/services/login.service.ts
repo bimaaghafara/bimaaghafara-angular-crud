@@ -1,14 +1,40 @@
-import { Http, Response, URLSearchParams } from '@angular/http';
+import { Http, Response, URLSearchParams, RequestOptionsArgs } from '@angular/http';
 import { Injectable } from '@angular/core';
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { Observable } from '../../../../node_modules/rxjs';
+
+import { User } from '../models/user';
 
 @Injectable()
-export class LoginService {
-    constructor(private _http: Http) { }
 
-    getPosts() {
-        const url = 'http://localhost:3000/posts';
-        return this._http.get(url, {params: {'_page': 2, '_limit': 3}}).pipe(
+export class LoginService {
+    usersUrl = 'http://localhost:3000/users';
+
+    constructor(
+        private http: Http,
+    ) { }
+
+    async login(userName, password) {
+        const options: RequestOptionsArgs = {
+            params: {
+                userName: userName,
+                password: password,
+            }
+        }
+        const user = await this.http.get(this.usersUrl, options).pipe(
+            map(res => res.json())
+        ).toPromise();
+        return user.length > 0? true: false;
+    }
+
+    getUsers(page, limit): Observable<User[]> {
+        const options: RequestOptionsArgs = {
+            params: { 
+                _page: page, 
+                _limit: limit, 
+            }
+        }
+        return this.http.get(this.usersUrl, options).pipe(
             map(res => res.json())
         );
     }

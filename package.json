@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently --kill-others \"json-server --watch db.json\" \"ng serve --port 4300 --open\"",
+    "start": "concurrently --kill-others \"npm run json-server\" \"npm run serve\"",
     "serve": "ng serve --port 4300 --open",
+    "json-server": "json-server --watch db.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -21,7 +22,9 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
+    "bootstrap": "3.3.7",
     "core-js": "^2.5.4",
+    "jquery": "3.2.1",
     "rxjs": "^6.0.0",
     "zone.js": "~0.8.26"
   },
