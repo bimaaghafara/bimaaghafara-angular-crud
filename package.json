@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently --kill-others \"json-server --watch db.json\" \"ng serve --port 4300 --open\"",
+    "start": "concurrently --kill-others \"npm run json-server\" \"npm run serve\"",
     "serve": "ng serve --port 4300 --open",
+    "json-server": "json-server --watch db.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
