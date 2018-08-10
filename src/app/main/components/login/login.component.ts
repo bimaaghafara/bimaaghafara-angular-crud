@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.getUsers(null, null).subscribe( user => {
-      console.log(user[0].id);
+      // console.log(user[0].id);
       console.log(user);
     });
 
@@ -26,6 +26,10 @@ export class LoginComponent implements OnInit {
   async isLogin(userName, password){
     let isLogin = await this.loginService.login(userName, password);
     console.log(isLogin);
+  }
+
+  onSubmit(){
+    console.log('submit!');
   }
 
 }

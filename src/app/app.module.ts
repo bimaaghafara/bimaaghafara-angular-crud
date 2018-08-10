@@ -18,6 +18,7 @@ import {LoginService } from './main/services/login.service';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpModule,
     AppRoutingModule,
   ],
