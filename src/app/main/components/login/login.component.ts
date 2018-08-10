@@ -15,8 +15,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loginService.getUsers(null, null).subscribe( post => {
-      console.log(post);
+    this.loginService.getUsers(null, null).subscribe( user => {
+      console.log(user[0].id);
+      console.log(user);
     });
 
     this.isLogin('user1', 'admin');

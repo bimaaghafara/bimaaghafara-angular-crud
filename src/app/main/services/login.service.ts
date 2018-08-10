@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from '../../../../node_modules/rxjs';
 
+import { User } from '../models/user';
+
 @Injectable()
 
 export class LoginService {
@@ -25,7 +27,7 @@ export class LoginService {
         return user.length > 0? true: false;
     }
 
-    getUsers(page, limit): Observable<any> {
+    getUsers(page, limit): Observable<User[]> {
         const options: RequestOptionsArgs = {
             params: { 
                 _page: page, 
