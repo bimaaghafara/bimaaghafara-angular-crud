@@ -11,7 +11,7 @@ export class LoginService {
         private http: Http,
     ) { }
 
-    async login(userName, password) {
+    async authUser(userName, password) {
         const options: RequestOptionsArgs = {
             params: {
                 userName: userName,
@@ -21,7 +21,7 @@ export class LoginService {
         const user = await this.http.get(this.usersUrl, options).pipe(
             map(res => res.json())
         ).toPromise();
-        return user.length > 0 ? true : false;
+        return user;
     }
 
 }

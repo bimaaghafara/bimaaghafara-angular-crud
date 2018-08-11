@@ -5,10 +5,11 @@
         <a class="navbar-brand" style="margin-left: 10px; height: 30px">User Management</a>
       </div>
       <ul class="nav navbar-nav">
-          <li><a routerLink="/login" routerLinkActive="active"> [ login ] </a></li>
-          <li><a routerLink="/users" routerLinkActive="active"> [ user-list ]</a></li>
-          <!-- <li><a routerLink="/users/add" routerLinkActive="active">user-add</a></li>
-          <li><a routerLink="/users/userId/edit" routerLinkActive="active">user-edit</a></li> -->
+          <li *ngIf="isLogin"><a routerLink="/users" routerLinkActive="active"> [ user-list ]</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="!isLogin"><a routerLink="/login" routerLinkActive="active"> [ login ] </a></li>
+        <li *ngIf="isLogin"><a (click)="logout()" class="btn btn-link"> [ logout ] </a></li>
       </ul>
     </div>
   </nav>

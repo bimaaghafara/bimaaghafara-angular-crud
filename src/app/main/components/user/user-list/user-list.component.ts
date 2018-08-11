@@ -31,15 +31,28 @@ export class UserListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    const isLogin = this.localStorageService.get('user') ? true : false;
+    if (!isLogin) {
+      this.localStorageService.set('isNotLoginMessage', 'You are not login!');
+      this.localStorageService.set('isNotLoginMessageRead', false);
+      this.router.navigate(['/login']);
+    }
     this.userService.getUsers(null, null).subscribe( users => {
       // console.log(users);
       this.users = users;
     });
-    this.localStorageService.set('tes', 'val from localStorage');
   }
 
-  tesLS() {
-    console.log(this.localStorageService.get('tes'));
+  setLS() {
+    this.localStorageService.set('tes', 'value from localStorage');
+  }
+
+  removeLS() {
+    this.localStorageService.remove('tes');
+  }
+
+  getLS() {
+    console.log(this.localStorageService.get('user'));
   }
 
   toggleSelectAll() {

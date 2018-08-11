@@ -1,15 +1,16 @@
-import { Component, OnInit, Inject, NgZone } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 
 // service
 import { LoginService } from '../../services/login.service';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   model = {
    userName: '', password: ''
@@ -19,25 +20,40 @@ export class LoginComponent implements OnInit {
     userName: true, password: true
   };
 
-  errorMessage = '';
+  errorMessage;
 
   constructor(
     @Inject(NgZone) private zone: NgZone,
     private loginService: LoginService,
+    private localStorageService: LocalStorageService,
     private router: Router
   ) {
   }
 
   ngOnInit() {
+    console.log(this.localStorageService.get('isNotLoginMessage'));
+    if (!this.localStorageService.get('isNotLoginMessageRead')) {
+      const isNotLoginMessage = this.localStorageService.get('isNotLoginMessage');
+      this.errorMessage = isNotLoginMessage ? isNotLoginMessage : '';
+    }
+    this.localStorageService.set('isNotLoginMessageRead', true);
+  }
+
+  ngOnDestroy() {
+    this.localStorageService.remove('isNotLoginMessage');
   }
 
   async doLogin(userName, password) {
-    const isLogin = await this.loginService.login(userName, password);
+    const user = await this.loginService.authUser(userName, password);
+    const isLogin = user.length > 0 ? true : false;
     // console.log(isLogin);
     if (isLogin) {
       console.clear();
       console.log('Login success!');
-      this.router.navigate(['/users']);
+      this.localStorageService.set('user', user[0]);
+      // use location.href to reload, so data from localStorage is refereshed
+      location.href = '/users';
+      // this.router.navigate(['/users']);
     } else {
       this.errorMessage = '** Username / Password is wrong!';
     }
