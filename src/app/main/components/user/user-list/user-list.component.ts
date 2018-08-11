@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 
 // service
+import { LocalStorageService } from 'angular-2-local-storage';
 import { UserService } from '../../../services/user.service';
 
 @Component({
@@ -25,6 +26,7 @@ export class UserListComponent implements OnInit {
   constructor(
     @Inject(NgZone) private zone: NgZone,
     private userService: UserService,
+    private localStorageService: LocalStorageService,
     private router: Router
   ) { }
 
@@ -33,6 +35,11 @@ export class UserListComponent implements OnInit {
       // console.log(users);
       this.users = users;
     });
+    this.localStorageService.set('tes', 'val from localStorage');
+  }
+
+  tesLS() {
+    console.log(this.localStorageService.get('tes'));
   }
 
   toggleSelectAll() {

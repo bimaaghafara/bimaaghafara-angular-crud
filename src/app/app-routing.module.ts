@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { LocalStorageModule } from 'angular-2-local-storage';
 
 // components
 import { LoginComponent } from './main/components/login/login.component';
@@ -30,7 +31,11 @@ const appRoutes: Routes = [
     imports: [
         RouterModule.forRoot(appRoutes),
         FormsModule,
-        CommonModule
+        CommonModule,
+        LocalStorageModule.withConfig({
+            prefix: 'my-app',
+            storageType: 'localStorage'
+        })
     ],
     exports: [
         RouterModule

@@ -1,8 +1,9 @@
 <div class="container">
   <div class="container-fluid" style="padding:10px 0 20px 0">
     <div class="pull-right">
-        <a class="btn btn-info" routerLink="/users/add" routerLinkActive="active" style="margin-left: 10px">Add User</a>
-        <button class="btn btn-danger" (click)="console(selectedUsers)" style="margin-left: 10px">Delete User</button>
+        <a class="btn btn-info btn-round" routerLink="/users/add" routerLinkActive="active" style="margin-left: 10px">Add User</a>
+        <button class="btn btn-danger btn-round" (click)="console(selectedUsers)" style="margin-left: 10px">Delete User</button>
+        <button class="btn btn-danger btn-round" (click)="tesLS()" style="margin-left: 10px">tesLS</button>
     </div>
   </div>
   <div style="overflow: auto">
@@ -10,7 +11,7 @@
       <thead>
         <tr>
           <th><input type="checkbox" [checked]="isSelectAll" (change)="toggleSelectAll()"></th>
-          <th>Edit</th>
+          <th></th>
           <th *ngFor="let column of columns">
             {{column.label}}
           </th>

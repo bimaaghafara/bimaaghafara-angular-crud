@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 // services
 import { LoginService } from './main/services/login.service';
 import { UserService } from './main/services/user.service';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { UserService } from './main/services/user.service';
   imports: [
     BrowserModule,
     HttpModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [
     LoginService,
