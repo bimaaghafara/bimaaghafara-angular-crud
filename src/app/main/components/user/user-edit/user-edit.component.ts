@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+// service
+import { LoginService } from '../../../services/login.service';
+
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserEditComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private loginService: LoginService,
+  ) { }
 
   ngOnInit() {
+    this.loginService.isLogin();
   }
 
 }

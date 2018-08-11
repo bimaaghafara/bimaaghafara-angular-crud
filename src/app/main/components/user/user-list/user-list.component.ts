@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 
 // service
+import { LoginService } from '../../../services/login.service';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { UserService } from '../../../services/user.service';
 
@@ -26,33 +27,17 @@ export class UserListComponent implements OnInit {
   constructor(
     @Inject(NgZone) private zone: NgZone,
     private userService: UserService,
+    private loginService: LoginService,
     private localStorageService: LocalStorageService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    const isLogin = this.localStorageService.get('user') ? true : false;
-    if (!isLogin) {
-      this.localStorageService.set('isNotLoginMessage', 'You are not login!');
-      this.localStorageService.set('isNotLoginMessageRead', false);
-      this.router.navigate(['/login']);
-    }
+    this.loginService.isLogin();
     this.userService.getUsers(null, null).subscribe( users => {
       // console.log(users);
       this.users = users;
     });
-  }
-
-  setLS() {
-    this.localStorageService.set('tes', 'value from localStorage');
-  }
-
-  removeLS() {
-    this.localStorageService.remove('tes');
-  }
-
-  getLS() {
-    console.log(this.localStorageService.get('user'));
   }
 
   toggleSelectAll() {
