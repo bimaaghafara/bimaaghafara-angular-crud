@@ -1,20 +1,30 @@
 <div class="container">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>No</th>
-        <th *ngFor="let column of columns">
-          {{column}}
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users; let i = index">
-        <td>{{i+1}}</td>
-        <td *ngFor="let column of columns">
-          {{user[column]}}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="container-fluid" style="padding:10px 0 20px 0">
+    <div class="pull-right">
+        <a class="btn btn-info" routerLink="/users/add" routerLinkActive="active" style="margin-left: 10px">Add User</a>
+        <button class="btn btn-danger" (click)="console(selectedUsers)" style="margin-left: 10px">Delete User</button>
+    </div>
+  </div>
+  <div style="overflow: auto">
+    <table class="table table-bordered" style="min-width: 999px">
+      <thead>
+        <tr>
+          <th><input type="checkbox" [checked]="isSelectAll" (change)="toggleSelectAll()"></th>
+          <th>Edit</th>
+          <th *ngFor="let column of columns">
+            {{column.label}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; let i = index">
+          <td><input type="checkbox" [checked]="isSelectAll" (change)="selectUser($event, user.id)"></td>
+          <td><a routerLink="/users/{{user.id}}/edit" routerLinkActive="active">Edit</a></td>
+          <td *ngFor="let column of columns">
+            {{user[column.name]}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
