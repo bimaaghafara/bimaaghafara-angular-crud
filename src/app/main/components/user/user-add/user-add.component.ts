@@ -57,9 +57,9 @@ export class UserAddComponent implements OnInit {
 
   doAddUser() {
     const currentUser: User = this.localStorageService.get('user');
+    this.user = Object.assign(this.user, this.model);
     this.user.lastModifiedBy = `${currentUser.firstName} ${currentUser.lastName}`;
     this.user.lastModifiedDate = moment().format('DD/MM/YYYY HH:mm');
-    this.user = Object.assign(this.user, this.model);
     // console.log(this.user);
     this.userService.addUser(this.user).subscribe( user => {
       console.log('Add new user success!');

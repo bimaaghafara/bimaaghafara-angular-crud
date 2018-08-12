@@ -24,6 +24,28 @@ export class UserService {
         );
     }
 
+    editUser(id, editedUser) {
+        const options: RequestOptionsArgs = {};
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        options.headers = headers;
+        const url = this.usersUrl + '/' + id;
+        const user = this.http.put(url, editedUser, options).pipe(
+            map(res => res.json())
+        );
+        return user;
+    }
+
+    getUser(id) {
+        const options: RequestOptionsArgs = {
+            params: {id: id}
+        };
+        const user = this.http.get(this.usersUrl, options).pipe(
+            map(res => res.json())
+        );
+        return user;
+    }
+
     getUserByUsername(userName) {
         const options: RequestOptionsArgs = {
             params: {userName: userName}

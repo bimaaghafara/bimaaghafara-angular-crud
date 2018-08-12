@@ -9,6 +9,39 @@
       "active": true,
       "lastModifiedBy": null,
       "lastModifiedDate": null
+    },
+    {
+      "lastModifiedBy": "admin super",
+      "lastModifiedDate": "12/08/2018 09:12",
+      "userName": "user1",
+      "firstName": "user",
+      "lastName": "1",
+      "active": true,
+      "password": "user1",
+      "confirmPassword": "user1",
+      "id": "lNG3784"
+    },
+    {
+      "lastModifiedBy": "admin super",
+      "lastModifiedDate": "12/08/2018 09:12",
+      "userName": "user2",
+      "firstName": "user",
+      "lastName": "2",
+      "active": false,
+      "password": "user2",
+      "confirmPassword": "user2",
+      "id": "8uFHwRT"
+    },
+    {
+      "userName": "usertiga",
+      "firstName": "user",
+      "lastName": "tiga",
+      "active": false,
+      "password": "user3",
+      "confirmPassword": "user3",
+      "lastModifiedBy": "admin super",
+      "lastModifiedDate": "12/08/2018 10:44",
+      "id": "giFqh2W"
     }
   ]
 }
