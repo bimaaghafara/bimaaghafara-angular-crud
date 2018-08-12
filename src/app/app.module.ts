@@ -8,6 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 // components
 import { AppComponent } from './app.component';
 
+// 3rd library
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+
 // services
 import { LoginService } from './main/services/login.service';
 import { UserService } from './main/services/user.service';
@@ -19,7 +22,8 @@ import { UserService } from './main/services/user.service';
   imports: [
     BrowserModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    Ng4LoadingSpinnerModule.forRoot(),
   ],
   providers: [
     LoginService,

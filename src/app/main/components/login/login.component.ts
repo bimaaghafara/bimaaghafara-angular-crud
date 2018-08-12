@@ -1,6 +1,10 @@
 import { Component, OnInit, OnDestroy, Inject, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 
+
+// 3rd library
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 // service
 import { LoginService } from '../../services/login.service';
 import { LocalStorageService } from 'angular-2-local-storage';
@@ -26,7 +30,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     @Inject(NgZone) private zone: NgZone,
     private loginService: LoginService,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router,
+    private spinnerService: Ng4LoadingSpinnerService,
   ) {
   }
 
@@ -44,18 +49,25 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   async doLogin(userName, password) {
+    this.spinnerService.show();
     const user = await this.loginService.authUser(userName, password);
     const isLogin = user.length > 0 ? true : false;
     // console.log(isLogin);
     if (isLogin) {
       console.clear();
+      this.errorMessage = '';
       console.log('Login success!');
       this.localStorageService.set('user', user[0]);
       // use location.href to reload, so data from localStorage is refereshed
-      location.href = '/users';
+      setTimeout(() => {
+        location.href = '/users';
+      }, 500);
       // this.router.navigate(['/users']);
     } else {
-      this.errorMessage = '** Username / Password is wrong!';
+      setTimeout(() => {
+        this.spinnerService.hide();
+        this.errorMessage = '** Username / Password is wrong!';
+      }, 2000);
     }
   }
 

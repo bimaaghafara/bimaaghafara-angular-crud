@@ -28,16 +28,22 @@
     </table>
   </div>
   <div>
-    <ul class="pagination pagination-sm">
-      <li><a href="#">First</a></li>
-      <li><a href="#"><</a></li>
-      <li><a href="#" class="active">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-      <li><a href="#">></a></li>
-      <li><a href="#">Last</a></li>
+    <ul class="pagination pagination">
+      <li><a type="button" class="btn" (click)="setCurrentPage(1)">First</a></li>
+      <li><a type="button" class="btn" (click)="setCurrentPage(currentPage-1)"><</a></li>
+      <li *ngFor="let page of pages" [ngClass]="{active: currentPage===page}">
+        <a type="button" class="btn" (click)="setCurrentPage(page)">{{page}}</a>
+      </li>
+      <li><a type="button" class="btn" (click)="setCurrentPage(currentPage+1)">></a></li>
+      <li><a type="button" class="btn" (click)="setCurrentPage(maxPage)">Last</a></li>
     </ul>
+    <div class="pull-right" style="width: 150px; margin: 20px 0;">
+      <div style="float:right">
+        <select [(ngModel)]="selectedLimit" class="form-control" id="limit" (ngModelChange)="setLimit(selectedLimit)">
+          <option *ngFor="let limit of limits " [attr.value]="limit">{{limit}}</option>
+        </select>
+      </div>
+      <label style="float:right; margin-right: 10px">Show :</label>
+    </div>
   </div>
 </div>

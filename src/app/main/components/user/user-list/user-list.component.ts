@@ -30,6 +30,12 @@ export class UserListComponent implements OnInit {
   ];
   isSelectAll = false;
   selectedUsers = [];
+  selectedLimit = 10;
+  limits = [10, 25, 50, 100];
+  maxPage;
+  currentPage = 1;
+  pages = [];
+
   constructor(
     @Inject(NgZone) private zone: NgZone,
     private userService: UserService,
@@ -47,7 +53,45 @@ export class UserListComponent implements OnInit {
     this.userService.getUsers(null, null).subscribe( users => {
       // console.log(users);
       this.users = users;
+      this.maxPage = Math.ceil(users.length / this.selectedLimit);
+      this.loadPagination();
     });
+  }
+
+  loadPagination() {
+    this.pages = [];
+    let leftPage, rightPage, i;
+    if (this.currentPage === 1) {
+      leftPage = 1; rightPage = 5;
+    } else if (this.currentPage === this.maxPage) {
+      leftPage = this.maxPage - 4;
+      rightPage = this.maxPage;
+    } else {
+      leftPage = this.currentPage - 2;
+      rightPage = this.currentPage + 2;
+    }
+    for (i = leftPage; i <= rightPage; i++ ) {
+      if (i > 0 && i <= this.maxPage) {
+        this.pages.push(i);
+      }
+    }
+    // console.log(this.pages);
+  }
+
+  setLimit(limit) {
+    // console.log(limit);
+    this.loadData();
+    console.log(`selectedLimit : ${this.selectedLimit}`);
+    console.log(`currentPage : ${this.currentPage}`);
+  }
+
+  setCurrentPage(page) {
+    if (page > 0 && page <= this.maxPage && page !== this.currentPage) {
+      this.currentPage = page;
+      this.loadPagination();
+      console.log(`selectedLimit : ${this.selectedLimit}`);
+      console.log(`currentPage : ${this.currentPage}`);
+    }
   }
 
   toggleSelectAll() {
@@ -81,8 +125,8 @@ export class UserListComponent implements OnInit {
     let goToLogin = false;
     for (let i = 0; i < users.length; i++ ) {
       if (users[i].userName !== 'admin') {
-        const fx = await this.userService.deleteUser(users[i].id);
-        const loadData = await this.userService.getUsers(null, null).toPromise().then(
+        await this.userService.deleteUser(users[i].id);
+        await this.userService.getUsers(null, null).toPromise().then(
           res => this.users = res
         );
         if (currentUser.userName === users[i].userName) {

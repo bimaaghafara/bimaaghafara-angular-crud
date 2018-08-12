@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+
+// 3rd library
 import { LocalStorageModule } from 'angular-2-local-storage';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 // components
 import { LoginComponent } from './main/components/login/login.component';
@@ -35,7 +38,8 @@ const appRoutes: Routes = [
         LocalStorageModule.withConfig({
             prefix: 'my-app',
             storageType: 'localStorage'
-        })
+        }),
+        Ng4LoadingSpinnerModule.forRoot(),
     ],
     exports: [
         RouterModule
