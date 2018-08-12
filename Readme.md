@@ -2,7 +2,7 @@
 
 Using Angular 6 as frontend and Json-server as API. In short, JSON Server is a Node module, running an Express server, that let's you specify a JSON file to act as a data source for your mock REST API
 
-#How to run App
+# How to run App
 
 1. Npm install
 2. Npm run start
