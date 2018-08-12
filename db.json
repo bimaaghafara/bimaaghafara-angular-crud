@@ -33,14 +33,14 @@
       "id": "8uFHwRT"
     },
     {
-      "userName": "usertiga",
+      "userName": "user3",
       "firstName": "user",
-      "lastName": "tiga",
-      "active": false,
+      "lastName": "3",
+      "active": true,
       "password": "user3",
       "confirmPassword": "user3",
-      "lastModifiedBy": "admin super",
-      "lastModifiedDate": "12/08/2018 10:44",
+      "lastModifiedBy": "user 1",
+      "lastModifiedDate": "12/08/2018 10:48",
       "id": "giFqh2W"
     }
   ]
