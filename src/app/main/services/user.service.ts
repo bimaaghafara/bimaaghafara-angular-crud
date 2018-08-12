@@ -69,12 +69,13 @@ export class UserService {
     }
 
     getUsers(page, limit): Observable<User[]> {
-        const options: RequestOptionsArgs = {
+        let options: RequestOptionsArgs = {
             params: {
                 _page: page,
                 _limit: limit,
             }
         };
+        options = !!page && !!limit ? options : {};
         return this.http.get(this.usersUrl, options).pipe(
             map(res => res.json())
         );

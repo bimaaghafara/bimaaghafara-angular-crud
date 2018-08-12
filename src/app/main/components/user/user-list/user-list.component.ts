@@ -30,10 +30,11 @@ export class UserListComponent implements OnInit {
   ];
   isSelectAll = false;
   selectedUsers = [];
-  selectedLimit = 10;
-  limits = [10, 25, 50, 100];
+  selectedLimit;
+  limits = [5, 10, 25, 50, 100];
   maxPage;
-  currentPage = 1;
+  usersLength;
+  currentPage;
   pages = [];
 
   constructor(
@@ -45,16 +46,24 @@ export class UserListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.currentPage = 1;
+    this.selectedLimit = 10;
     this.loginService.isLogin();
-    this.loadData();
-  }
 
-  loadData() {
+    // get maxPage
     this.userService.getUsers(null, null).subscribe( users => {
-      // console.log(users);
-      this.users = users;
+      this.usersLength = users.length;
       this.maxPage = Math.ceil(users.length / this.selectedLimit);
       this.loadPagination();
+      // first loadData
+      this.loadData(this.currentPage, this.selectedLimit);
+    });
+  }
+
+  loadData(page, limit) {
+    this.userService.getUsers(page, limit).subscribe( users => {
+      // console.log(users);
+      this.users = users;
     });
   }
 
@@ -79,18 +88,22 @@ export class UserListComponent implements OnInit {
   }
 
   setLimit(limit) {
-    // console.log(limit);
-    this.loadData();
-    console.log(`selectedLimit : ${this.selectedLimit}`);
-    console.log(`currentPage : ${this.currentPage}`);
+    this.currentPage = 1;
+    this.loadData(this.currentPage, this.selectedLimit);
+    // limit change => maxPage & pagination change
+    this.maxPage = Math.ceil(this.usersLength / this.selectedLimit);
+    this.loadPagination();
+    // console.log(`selectedLimit : ${this.selectedLimit}`);
+    // console.log(`currentPage : ${this.currentPage}`);
   }
 
   setCurrentPage(page) {
     if (page > 0 && page <= this.maxPage && page !== this.currentPage) {
       this.currentPage = page;
       this.loadPagination();
-      console.log(`selectedLimit : ${this.selectedLimit}`);
-      console.log(`currentPage : ${this.currentPage}`);
+      this.loadData(this.currentPage, this.selectedLimit);
+      // console.log(`selectedLimit : ${this.selectedLimit}`);
+      // console.log(`currentPage : ${this.currentPage}`);
     }
   }
 
@@ -127,8 +140,9 @@ export class UserListComponent implements OnInit {
       if (users[i].userName !== 'admin') {
         await this.userService.deleteUser(users[i].id);
         await this.userService.getUsers(null, null).toPromise().then(
-          res => this.users = res
-        );
+          res => {
+            this.ngOnInit();
+          });
         if (currentUser.userName === users[i].userName) {
           goToLogin = true;
         }
