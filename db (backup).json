@@ -1,0 +1,47 @@
+{
+    "users": [
+      {
+        "id": "user0",
+        "userName": "admin",
+        "password": "admin",
+        "firstName": "admin",
+        "lastName": "super",
+        "active": true,
+        "lastModifiedBy": null,
+        "lastModifiedDate": null
+      },
+      {
+        "lastModifiedBy": "admin super",
+        "lastModifiedDate": "12/08/2018 09:12",
+        "userName": "user1",
+        "firstName": "user",
+        "lastName": "1",
+        "active": true,
+        "password": "user1",
+        "confirmPassword": "user1",
+        "id": "lNG3784"
+      },
+      {
+        "lastModifiedBy": "admin super",
+        "lastModifiedDate": "12/08/2018 09:12",
+        "userName": "user2",
+        "firstName": "user",
+        "lastName": "2",
+        "active": false,
+        "password": "user2",
+        "confirmPassword": "user2",
+        "id": "8uFHwRT"
+      },
+      {
+        "userName": "user3",
+        "firstName": "user",
+        "lastName": "3",
+        "active": true,
+        "password": "user3",
+        "confirmPassword": "user3",
+        "lastModifiedBy": "user 1",
+        "lastModifiedDate": "12/08/2018 10:48",
+        "id": "giFqh2W"
+      }
+    ]
+  }

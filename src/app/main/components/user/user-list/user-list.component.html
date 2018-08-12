@@ -2,10 +2,7 @@
   <div class="container-fluid" style="padding:10px 0 20px 0">
     <div class="pull-right">
         <a class="btn btn-info btn-round" routerLink="/users/add" routerLinkActive="active" style="margin-left: 10px">Add User</a>
-        <button class="btn btn-danger btn-round" (click)="console(selectedUsers)" style="margin-left: 10px">Delete User</button>
-        <!-- <button class="btn btn-success btn-round" (click)="setLS()" style="margin-left: 10px">setLS</button>
-        <button class="btn btn-warning btn-round" (click)="getLS()" style="margin-left: 10px">getLS</button>
-        <button class="btn btn-danger btn-round" (click)="removeLS()" style="margin-left: 10px">removeLS</button> -->
+        <button class="btn btn-danger btn-round" (click)="confirmDelete(selectedUsers)" style="margin-left: 10px">Delete Users</button>
     </div>
   </div>
   <div style="overflow: auto">
@@ -21,7 +18,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let user of users; let i = index">
-          <td><input type="checkbox" [checked]="isSelectAll" (change)="selectUser($event, user.id)"></td>
+          <td><input type="checkbox" [checked]="isSelectAll" (change)="selectUser($event, user)"></td>
           <td><a routerLink="/users/{{user.id}}/edit" routerLinkActive="active">Edit</a></td>
           <td *ngFor="let column of columns">
             {{user[column.name]}}

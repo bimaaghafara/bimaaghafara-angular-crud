@@ -36,6 +36,18 @@ export class UserService {
         return user;
     }
 
+    async deleteUser(id) {
+        const options: RequestOptionsArgs = {};
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        options.headers = headers;
+        const url = this.usersUrl + '/' + id;
+        const user = await this.http.delete(url, options).pipe(
+            map(res => res.json())
+        ).toPromise();
+        return user;
+    }
+
     getUser(id) {
         const options: RequestOptionsArgs = {
             params: {id: id}
