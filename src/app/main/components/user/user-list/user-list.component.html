@@ -5,24 +5,42 @@
         <button class="btn btn-danger btn-round" (click)="confirmDelete(selectedUsers)" style="margin-left: 10px">Delete Users</button>
     </div>
   </div>
-  <div style="overflow: auto">
-    <table class="table table-bordered" style="min-width: 999px">
+  <div class="table-responsive">
+    <table class="table table-hover" style="min-width: 999px">
       <thead>
         <tr>
           <th><input type="checkbox" [checked]="isSelectAll" (change)="toggleSelectAll()"></th>
           <th></th>
-          <th *ngFor="let column of columns">
+          <!-- <th *ngFor="let column of columns">
             {{column.label}}
-          </th>
+          </th> -->
+          <th>User</th>
+          <th>Active</th>
+          <th>Last Modified By</th>
+          <th>Last Modified Date</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let user of users; let i = index">
           <td><input type="checkbox" [checked]="isSelectAll" (change)="selectUser($event, user)"></td>
           <td><a routerLink="/users/{{user.id}}/edit" routerLinkActive="active">Edit</a></td>
-          <td *ngFor="let column of columns">
+          <!-- <td *ngFor="let column of columns">
             {{user[column.name]}}
+          </td> -->
+          <td>
+            <div>{{user.firstName}} {{user.lastName}}</div>
+            <div>{{user.userName}}</div>
           </td>
+          <td>
+            <div class="circleNonactive" [ngClass]="{circleActive: user.active}">
+            </div>
+            <div class="pull-left" style="margin-left: 10px; line-height: 20px;">
+                <span *ngIf="user.active">Active</span>
+                <span *ngIf="!user.active">Non-active</span>
+            </div>
+          </td>
+          <td>{{user.lastModifiedBy}}</td>
+          <td>{{user.lastModifiedDate}}</td>
         </tr>
       </tbody>
     </table>

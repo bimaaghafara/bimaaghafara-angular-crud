@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 // 3rd library
 import * as moment from 'moment';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 // service
 import { LocalStorageService } from 'angular-2-local-storage';
@@ -37,6 +38,7 @@ export class UserEditComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private spinnerService: Ng4LoadingSpinnerService,
   ) { }
 
   ngOnInit() {
@@ -67,6 +69,7 @@ export class UserEditComponent implements OnInit {
   }
 
   doSaveUser() {
+    this.spinnerService.show();
     const currentUser: User = this.localStorageService.get('user');
     this.user = Object.assign(this.user, this.model);
     this.user.lastModifiedBy = `${currentUser.firstName} ${currentUser.lastName}`;
@@ -74,7 +77,10 @@ export class UserEditComponent implements OnInit {
     // console.log(this.user);
     this.userService.editUser(this.userId, this.user).subscribe( user => {
       console.log('Edit user success!');
-      this.router.navigate(['/users']);
+      setTimeout(() => {
+        this.router.navigate(['/users']);
+        this.spinnerService.hide();
+      }, 1000);
     });
   }
 

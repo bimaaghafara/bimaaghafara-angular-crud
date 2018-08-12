@@ -20,14 +20,14 @@ import { User } from '../../../models/user';
 export class UserListComponent implements OnInit {
 
   users;
-  columns = [
-    {name: 'userName', label: 'Username'},
-    {name: 'firstName', label: 'First Name'},
-    {name: 'lastName', label: 'Last Name'},
-    {name: 'active', label: 'Active'},
-    {name: 'lastModifiedBy', label: 'Last Modified By'},
-    {name: 'lastModifiedDate', label: 'Last Modified Date'},
-  ];
+  // columns = [
+  //   {name: 'userName', label: 'Username'},
+  //   {name: 'firstName', label: 'First Name'},
+  //   {name: 'lastName', label: 'Last Name'},
+  //   {name: 'active', label: 'Active'},
+  //   {name: 'lastModifiedBy', label: 'Last Modified By'},
+  //   {name: 'lastModifiedDate', label: 'Last Modified Date'},
+  // ];
   isSelectAll = false;
   selectedUsers = [];
   selectedLimit;
@@ -64,6 +64,9 @@ export class UserListComponent implements OnInit {
     this.userService.getUsers(page, limit).subscribe( users => {
       // console.log(users);
       this.users = users;
+      if (this.isSelectAll) {
+        this.toggleSelectAll();
+      }
     });
   }
 

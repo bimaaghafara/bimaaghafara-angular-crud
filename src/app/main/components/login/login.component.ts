@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         this.spinnerService.hide();
         this.errorMessage = '** Username / Password is wrong!';
-      }, 2000);
+      }, 1000);
     }
   }
 
