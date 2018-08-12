@@ -1,7 +1,14 @@
 {
   "users": [
-    {"id": "user0", "userName": "admin", "password":"admin", "firstName": "admin", "lastName": "mimin", "active": true, "lastModifiedBy": null, "lastModifiedDate": null},
-    {"id": "user1", "userName": "user1", "password":"admin", "firstName": "admin", "lastName": "", "active": true, "lastModifiedBy": null, "lastModifiedDate": null},
-    {"id": "user2", "userName": "user2", "password":"admin", "firstName": "admin", "lastName": "", "active": true, "lastModifiedBy": null, "lastModifiedDate": null}
+    {
+      "id": "user0",
+      "userName": "admin",
+      "password": "admin",
+      "firstName": "admin",
+      "lastName": "super",
+      "active": true,
+      "lastModifiedBy": null,
+      "lastModifiedDate": null
+    }
   ]
 }

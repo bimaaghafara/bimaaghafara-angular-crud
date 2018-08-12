@@ -7,6 +7,7 @@
         <div class="col-sm-9 col-md-10">
           <input type="text" class="form-control" id="userName" name="userName" required [(ngModel)]="model.userName" oninput="this.value=this.value.replace(/\s/g, '');">
           <div class="validationText" *ngIf="!isValid.userName"> *Required!</div>
+          <div class="validationText" *ngIf="isUserNameUsed"> *Username is already used by someone!</div>
         </div>
       </div>
 
@@ -44,7 +45,7 @@
       <div class="form-group">
         <label class="control-label col-sm-3 col-md-2" for="confirmPassword">Confirm Password : </label>
         <div class="col-sm-9 col-md-10">
-          <input type="confirmPassword" class="form-control" id="confirmPassword" name="confirmPassword" required [(ngModel)]="model.confirmPassword" oninput="this.value=this.value.replace(/\s/g, '');">
+          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required [(ngModel)]="model.confirmPassword" oninput="this.value=this.value.replace(/\s/g, '');">
           <div class="validationText" *ngIf="!isValid.confirmPassword"> *Password not match!</div>
         </div>
       </div>
